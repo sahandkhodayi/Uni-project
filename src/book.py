@@ -36,7 +36,9 @@ class Books:
 
 
     def add_book(self,new_book:Book)->None:
-
+        """
+        this function is used to add new books for library
+        """
         self.books.append(new_book)
         
 
