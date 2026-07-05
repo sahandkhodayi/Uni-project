@@ -31,7 +31,7 @@ class Books:
         return len(self.books)
     
     
-    def __getitem__(self, key)-> str:
+    def __getitem__(self, key)-> object:
         return self.books[key]
 
 
