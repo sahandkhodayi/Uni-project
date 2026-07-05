@@ -2,6 +2,11 @@
 class Book:
 
     def __init__(self,name:str=None,author=None,year:int=None,ID:int=None,**Hashmap):
+        """
+        main class for books that its attr are info about the book 
+        could use python dictionary for input as hashmap !!!
+        
+        """
         self.name=name
         self.author=author
         self.year=year
