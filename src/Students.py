@@ -5,7 +5,7 @@ class Students:
     this class is mainly for stududents or member info of the library 
     attrb will be writen for this class soon !
     """
-    ...  
+
     def __init__(self,Students:list[Student]):
         self.Students=Student if len(Students)!=0 else []
 
@@ -33,7 +33,6 @@ class Student:
         self.name=name
         self.Student_ID=Student_ID
         self.Phone_number=Phone_number
-        self.books=[]
         self.lend_books= books if len(books)!=0 else []
 
         if Hashmap:

@@ -11,6 +11,7 @@ class Book:
         self.author=author
         self.year=year
         self.Book_ID=ID
+        self.borrowed=False
 
         if Hashmap:
             for key , value in Hashmap.items():
