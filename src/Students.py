@@ -1,25 +1,5 @@
 from book import Book
 
-class Students:
-    """
-    this class is mainly for stududents or member info of the library 
-    attrb will be writen for this class soon !
-    """
-
-    def __init__(self,Students:list[Student]):
-        self.Students=Student if len(Students)!=0 else []
-
-    def __len__(self)->int:
-        return len(self.Students)    
-    
-    def __getitem__(self, key:int)->Student:
-        return self.Students[key]
-
-    def add_student(self,student:Student)->None:
-
-        self.Students.append(student)    
-
-
 
 
 
@@ -39,4 +19,24 @@ class Student:
             for key , value in Hashmap.items():
                 self.key=value
 
+
+
+class Students:
+    """
+    this class is mainly for stududents or member info of the library 
+    attrb will be writen for this class soon !
+    """
+
+    def __init__(self,Students:list[Student]=None):
+        self.Students=Students if Students  else []
+
+    def __len__(self)->int:
+        return len(self.Students)    
+    
+    def __getitem__(self, key:int)->Student:
+        return self.Students[key]
+
+    def add_student(self,student:Student)->None:
+
+        self.Students.append(student)    
 

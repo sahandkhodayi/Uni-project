@@ -11,32 +11,36 @@ _INFO={
 
 
 
-
 class Library:
 
-    def __init__(self,books:Books=None,Students:Students=None):
-        self.SHELF=books if len(books) else []
-        self.students=Students if len(Students) else []
-        self.lend=[]
-        self.All_Books=books if len(books) else []
+    def __init__(self,books_List:Books=None,Students_List:Students=None):
+        try:
+            self.SHELF=books_List if len(books_List) else Books()
+            self.students=Students_List if len(Students_List) else Students()
+            self.lend=[]
+            self.All_Books=Books(list(self.SHELF.books))
+        
+        except TypeError as e:
+            raise TypeError(f"{e} error one of atte are none please fill it !!!")
+            
 
-    def lend_book(self,Student:Student,book:Book)->None:
-        if book not in self.SHELF.books:
+    def lend_book(self,Target_Student:Student,target_book:Book)->None:
+        if target_book not in self.SHELF.books:
             raise ValueError("book is not available!")
         
-        if book.borrowed :
+        if target_book.borrowed :
             raise ValueError("book already taken!")
         
         
-        if Student not in self.students.Students:
+        if Target_Student not in self.students.Students:
             raise ValueError("student couldnt found!")
 
-        Student.lend_books.append(book)
-        book.borrowed=True
+        Target_Student.lend_books.append(target_book)
+        target_book.borrowed=True
 
-        self.lend.append(book)
+        self.lend.append(target_book)
         
-        self.SHELF.remove(book)
+        self.SHELF.books.remove(target_book)
         return
     
 
@@ -45,36 +49,36 @@ class Library:
 
         func=_INFO[Key]
         for Bk in self.SHELF.books:
-            if func(Bk).lower()==Intel.lower:
+            if func(Bk).lower()==Intel.lower():
                 return Bk
             
         return None    
     
-    def Return_book(self,student:Student,book:Book)->None:
-        if book not in self.lend:
+    def Return_book(self,tg_student:Student,tg_book:Book)->None:
+        if tg_book not in self.lend:
             raise ValueError("book is not in lend")
-        if not book.borrowed:
+        if not tg_book.borrowed:
             raise ValueError("BOOK already available!")
         
-        if book not in self.All_Books:
+        if tg_book not in self.All_Books:
             raise ValueError("book doesnt belong in this library!")
         
-        if student not in self.students.Students:
+        if tg_student not in self.students:
             raise ValueError(" Student iis not in our database!")
         
 
-        student.lend_books.remove(book)
-        book.borrowed=False
-        self.SHELF.append(book)
-        self.lend.remove(book)
+        tg_student.lend_books.remove(tg_book)
+        tg_book.borrowed=False
+        self.SHELF.books.append(tg_book)
+        self.lend.remove(tg_book)
         return None
     
     def available_books(self)->list[Book]:
-        return self.SHELF
+        return self.SHELF.books
     
     def borrowed_books(self)->list[Book]:
 
-        return self.borrowed_books
+        return self.lend
     
 
 
